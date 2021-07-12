@@ -1,0 +1,16 @@
+{
+  "name": "bitcoin-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bitcoinbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Morten Jensen",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
