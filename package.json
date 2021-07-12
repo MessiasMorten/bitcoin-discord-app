@@ -4,7 +4,7 @@
   "description": "",
   "main": "bitcoinbot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bitcoinbot.js"
   },
   "author": "Morten Jensen",
   "license": "ISC",
