@@ -18,6 +18,7 @@ let guildmember;
 
 bot.on('ready', () => {
 
+    bot.user.setActivity('BTC @ Binance', ({type: "WATCHING"}));
 
     bot.users.fetch('859455923089047562').then((user) => {
         botobj = user;
@@ -35,20 +36,18 @@ bot.on('ready', () => {
         try {
             
             require('axios')
-            .get("https://api.nomics.com/v1/currencies/ticker?key="+ apikey +"&ids=BTC&interval=1d&convert=USD&per-page=100&page=1")
-            .then(response => jsondata = response.data)
+            .get("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT")
+            .then(response => jsondata = response.data) 
 
-            currentprice = jsondata[0]['price'];
-            change = jsondata[0]['1d']['price_change_pct'];
+            currentprice = jsondata['lastPrice'];
+            change = jsondata['priceChangePercent'];
 
             //Trim price and change strings
             newcurrentprice = currentprice.substring(0,5);
-            newchangeint = change * 100;
-            newchange = String(newchangeint);
-            newchangestr = newchange.substring(0,4);
+            newchangestr = change.substring(0,4);
+            newchangeint = parseInt(newchangestr);
 
             //Build up name change for bot
-            
             let botname;
             let bear = guildmember.guild.roles.cache.find(r => r.name === "botbear");
             let bull = guildmember.guild.roles.cache.find(r => r.name === "botbull");
@@ -81,11 +80,13 @@ bot.on('ready', () => {
 
             }
 
-        } catch {}
+        } catch {
+            console.log(jsondata);
+        }
 
 
 
-    }, 3000);
+    }, 1000);
 
     
 
